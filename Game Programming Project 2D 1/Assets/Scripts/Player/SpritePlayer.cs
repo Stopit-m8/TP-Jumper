@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpritePlayer : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    public GroundChecker groundChecker;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isLookingRight = true;

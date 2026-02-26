@@ -5,6 +5,7 @@ public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
+    [SerializeField] private float jumpLimit;
     private Rigidbody2D rb;
     private Vector2 dir;
 
@@ -22,8 +23,7 @@ public class MovementPlayer : MonoBehaviour
     {
         if (ctx.performed)
         {
-            Debug.Log("penis");
-            rb.linearVelocity = new Vector2(rb.linearVelocityX, rb.linearVelocityY * jumpPower);
+            rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpPower);
         }
     }
 
