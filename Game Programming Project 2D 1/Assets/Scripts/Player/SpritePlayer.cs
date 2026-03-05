@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpritePlayer : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    public GroundChecker groundChecker;
+    [SerializeField] private GroundChecker groundChecker;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isLookingRight = true;
@@ -15,17 +16,19 @@ public class SpritePlayer : MonoBehaviour
 
     private void Update()
     {
-        if (rb.linearVelocityX < -0.1 && isLookingRight)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePos.x < transform.position.x && isLookingRight)
         {
             isLookingRight = !isLookingRight;
             spriteRenderer.flipX = true;
         }
-        else if (rb.linearVelocityX > 0.1 && !isLookingRight)
+        else if (mousePos.x > transform.position.x && !isLookingRight)
         {
             isLookingRight = !isLookingRight;
             spriteRenderer.flipX = false;
         }
         animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocityX));
         animator.SetFloat("VelocityY", rb.linearVelocityY);
+        animator.SetBool("isGrounded", groundChecker.isGrounded);
     }
 }

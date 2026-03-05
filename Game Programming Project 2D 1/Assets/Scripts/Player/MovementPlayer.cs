@@ -5,12 +5,15 @@ public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
-    [SerializeField] private float jumpLimit;
+    [SerializeField] private float jumpExtra;
+    private float jumpCount;
+    [SerializeField] private GroundChecker groundChecker;
     private Rigidbody2D rb;
     private Vector2 dir;
 
     private void Start()
     {
+        jumpCount = jumpExtra;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -21,11 +24,20 @@ public class MovementPlayer : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (ctx.performed && jumpCount > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpPower);
+            jumpCount--;
         }
     }
+    private void Update()
+    {
+        if (groundChecker.isGrounded)
+        {
+            jumpCount = jumpExtra;
+        }
+    }
+
 
     private void FixedUpdate()
     {
