@@ -1,3 +1,4 @@
+using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,8 +6,10 @@ public class TrajectoryBall : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float launchPower;
+    [SerializeField] private int lineResolution;
     private LineRenderer line;
     private Camera cam;
+    private bool isHolding;
 
     private void Awake()
     {
@@ -16,26 +19,60 @@ public class TrajectoryBall : MonoBehaviour
 
     public void MouseClick(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (ctx.performed)
         {
-            ShowLine();
-            Debug.Log("munir");
+            isHolding = true;
         }
         if (ctx.canceled)
         {
+            isHolding = false;
             SpawnBall();
             HideLine();
         }
     }
 
+    void Update()
+    {
+        if (isHolding)
+        {
+            ShowLine();
+            Debug.Log("munir");
+        }
+    }
+
     void ShowLine()
     {
+        //Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        //mousePos.z = 0f;
+
+        //line.positionCount = lineResolution;
+        //line.SetPosition(0, transform.position);
+        //line.SetPosition(1, mousePos);
+
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        line.positionCount = 2;
-        line.SetPosition(0, transform.position);
-        line.SetPosition(1, mousePos);
+        Vector2 direction = (mousePos - transform.position).normalized;
+        Vector2 velocity = direction * launchPower;
+
+        line.positionCount = lineResolution;
+
+        Vector2 position = transform.position;
+        Vector2 gravity = Physics2D.gravity;
+
+        float timestep = 0.1f;
+
+        for (int i = 0; i < lineResolution; i++)
+        {
+            float t = i * timestep;
+
+            Vector2 predictedPosition =
+                position +
+                velocity * t +
+                0.5f * gravity * t * t;
+
+            line.SetPosition(i, predictedPosition);
+        }
     }
 
     void HideLine()
@@ -49,8 +86,13 @@ public class TrajectoryBall : MonoBehaviour
         mousePos.z = 0f;
 
         Vector2 direction = (mousePos - transform.position).normalized;
-
-        GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-        ball.GetComponent<Rigidbody2D>().linearVelocity = direction * launchPower;
+        GameObject ball = PoolingTeleboll.instance.getPooledObject();
+        if (ball != null)
+        {
+            ball.transform.position = transform.position;
+            ball.SetActive(true);
+            ball.GetComponent<Rigidbody2D>().linearVelocity = direction * launchPower;
+        }
+        
     }
 }
