@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class TrajectoryBall : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private PoolingTeleboll poolingTeleboll;
     [SerializeField] private float launchPower;
     [SerializeField] private int lineResolution;
     private LineRenderer line;
@@ -19,11 +20,11 @@ public class TrajectoryBall : MonoBehaviour
 
     public void MouseClick(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (ctx.performed && Time.timeScale != 0f)
         {
             isHolding = true;
         }
-        if (ctx.canceled)
+        if (ctx.canceled && Time.timeScale != 0f)
         {
             isHolding = false;
             SpawnBall();
@@ -73,10 +74,12 @@ public class TrajectoryBall : MonoBehaviour
 
             line.SetPosition(i, predictedPosition);
         }
+        Time.timeScale = 0.5f;
     }
 
     void HideLine()
     {
+        Time.timeScale = 1f;
         line.positionCount = 0;
     }
 
@@ -86,7 +89,7 @@ public class TrajectoryBall : MonoBehaviour
         mousePos.z = 0f;
 
         Vector2 direction = (mousePos - transform.position).normalized;
-        GameObject ball = PoolingTeleboll.instance.getPooledObject();
+        GameObject ball = poolingTeleboll.getPooledObject();
         if (ball != null)
         {
             ball.transform.position = transform.position;

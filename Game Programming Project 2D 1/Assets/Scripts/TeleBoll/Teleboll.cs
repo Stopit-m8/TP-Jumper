@@ -10,10 +10,11 @@ public class Teleboll : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<TransformPlayer>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.TeleportClip);
             gameObject.SetActive(false);
             player.recieveBollPosition(transform.position);
         }

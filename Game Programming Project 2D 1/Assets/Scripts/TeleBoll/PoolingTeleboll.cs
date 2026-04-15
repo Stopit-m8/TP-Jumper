@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class PoolingTeleboll : MonoBehaviour
 {
-    public static PoolingTeleboll instance;
+    //public static PoolingTeleboll instance;
     private List<GameObject> telebollPooling = new List<GameObject>();
     private int amountToPool = 1;
 
     [SerializeField] private GameObject telebollPrefab;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     private void Start()
     {
