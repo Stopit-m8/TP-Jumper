@@ -8,6 +8,7 @@ public class TrajectoryBall : MonoBehaviour
     [SerializeField] private PoolingTeleboll poolingTeleboll;
     [SerializeField] private float launchPower;
     [SerializeField] private int lineResolution;
+    public bool canShoot;
     private LineRenderer line;
     private Camera cam;
     private bool isHolding;
@@ -20,11 +21,11 @@ public class TrajectoryBall : MonoBehaviour
 
     public void MouseClick(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && Time.timeScale != 0f)
+        if (ctx.performed && Time.timeScale != 0f && canShoot)
         {
             isHolding = true;
         }
-        if (ctx.canceled && Time.timeScale != 0f)
+        if (ctx.canceled && Time.timeScale != 0f && canShoot)
         {
             isHolding = false;
             SpawnBall();

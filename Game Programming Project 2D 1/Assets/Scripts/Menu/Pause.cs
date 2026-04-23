@@ -4,17 +4,17 @@ using UnityEngine.InputSystem;
 public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject setting;
-    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pausePanel;
     public void PauseGame(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
             Debug.Log("Game Is Paused");
-            if (pausePanel.activeInHierarchy)
+            if (pausePanel.activeInHierarchy || setting.activeInHierarchy)
             {
                 Time.timeScale = 1f;
                 pausePanel.SetActive(false);
+                setting.SetActive(false);
             }
             else
             {
@@ -25,10 +25,12 @@ public class Pause : MonoBehaviour
     }
     public void PauseG()
     {
-        if (pausePanel.activeInHierarchy)
+        Debug.Log("Game Is Paused");
+        if (pausePanel.activeInHierarchy || setting.activeInHierarchy)
         {
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
+            setting.SetActive(false);
         }
         else
         {
@@ -42,17 +44,17 @@ public class Pause : MonoBehaviour
         if (setting.activeInHierarchy)
         {
             setting.SetActive(false);
-            pauseMenu.SetActive(true);
+            pausePanel.SetActive(true);
         }
         else
         {
             setting.SetActive(true);
-            pauseMenu.SetActive(false);
+            pausePanel.SetActive(false);
         }
     }
 
-    public void BackToMainMenu()
+    public void BackToLevelSelect()
     {
-        TransitionManager.instance.StartPrevScene();
+        TransitionManager.instance.StartScene(1);
     }
 }

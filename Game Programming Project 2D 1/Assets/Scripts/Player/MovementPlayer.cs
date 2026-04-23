@@ -10,6 +10,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private GroundChecker groundChecker;
     private Rigidbody2D rb;
     private Vector2 dir;
+    public bool isDead;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class MovementPlayer : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && jumpCount > 0)
+        if (ctx.performed && jumpCount > 0 && isDead == false)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpPower);
             jumpCount--;
@@ -41,6 +42,14 @@ public class MovementPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(dir.normalized.x * speed, rb.linearVelocityY);
+        if (isDead == false)
+        {
+            rb.linearVelocity = new Vector2(dir.normalized.x * speed, rb.linearVelocityY);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, 0);
+        }
+        
     }
 }
