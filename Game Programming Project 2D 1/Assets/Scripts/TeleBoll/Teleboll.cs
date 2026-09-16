@@ -31,6 +31,17 @@ public class Teleboll : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log($"colliding with : {collision.gameObject.layer}");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Teleportable") && canCollide)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.TeleportClip);
+            gameObject.SetActive(false);
+            player.recieveBollPosition(transform.position);
+        }
+    }
+
     private void waitToDestroy()
     {
         StartCoroutine(waitForDestroy());
