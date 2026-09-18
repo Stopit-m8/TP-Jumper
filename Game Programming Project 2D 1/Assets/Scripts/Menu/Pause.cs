@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,7 @@ public class Pause : MonoBehaviour
 
     public void OpenCloseSettings()
     {
+        DOTween.KillAll(true);
         if (setting.activeInHierarchy)
         {
             setting.SetActive(false);

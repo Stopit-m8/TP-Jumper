@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class Teleboll : MonoBehaviour
 {
     public TransformPlayer player;
+    [SerializeField] private GameObject trailVFX;
     private bool canCollide = false;
 
     private void OnDisable()
@@ -19,6 +20,7 @@ public class Teleboll : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<TransformPlayer>();
+        Instantiate(trailVFX, transform);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
