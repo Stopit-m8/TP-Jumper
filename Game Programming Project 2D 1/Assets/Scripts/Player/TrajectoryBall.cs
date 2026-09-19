@@ -93,6 +93,7 @@ public class TrajectoryBall : MonoBehaviour
         GameObject ball = poolingTeleboll.getPooledObject();
         if (ball != null)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.startTeleportClip);
             ball.transform.position = transform.position;
             ball.SetActive(true);
             ball.GetComponent<Rigidbody2D>().linearVelocity = direction * launchPower;

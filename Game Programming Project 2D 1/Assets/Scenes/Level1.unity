@@ -8994,6 +8994,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4070977091020654053, guid: 0a4668e2dcb44e9439a5f51b97208067, type: 3}
+      propertyPath: walkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b401656be24aace4f93778d3fd0a6f16, type: 3}
+    - target: {fileID: 4070977091020654053, guid: 0a4668e2dcb44e9439a5f51b97208067, type: 3}
+      propertyPath: startTeleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dd35847d8fb047d3ae0bc9a78fe6a46, type: 3}
     - target: {fileID: 8923995727521639635, guid: 0a4668e2dcb44e9439a5f51b97208067, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.330051

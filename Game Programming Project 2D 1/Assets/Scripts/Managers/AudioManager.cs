@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     [Header("---Audio Clip---")]
     public AudioClip musicClip;
     public AudioClip TeleportClip;
+    public AudioClip startTeleportClip;
+    public AudioClip walkClip;
 
     private void Awake()
     {

@@ -12,4 +12,9 @@ public class AnimPlayer : MonoBehaviour
         animator.SetFloat("VelocityY",Mathf.Abs(rb.linearVelocityY));
         animator.SetBool("isGrounded", groundChecker.isGrounded);
     }
+
+    public void PlayWalkSound()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.walkClip);
+    }
 }
