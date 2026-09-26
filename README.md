@@ -42,6 +42,7 @@ My Contribution (Stopit-m8):
 | **Player System** | Movement, Input | Handles player movement and input |
 | **Teleport System** | Teleport | Handles teleport ball logic and teleport logic |
 | **Enemy System** | Movement, Behaviour | Handles enemy movement and behaviour logic |
+| **Time System** | Time | Handles time count for score |
 | **Background System** | Parallax | Handles background parallax logic |
 | **UI System** | Menus, HUD, Animation | Handles UI functionality and transitions. |
 | **Audio System** | BGM, SFX | Manages music and sound effects. |
