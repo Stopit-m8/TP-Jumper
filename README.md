@@ -31,7 +31,7 @@ My Contribution (Stopit-m8):
 
 ### ⚙️ Layer / Module Design
 
-(insert pic)
+![Project Diagram](Images/TPJumperModuleDesign.drawio.svg)
 
 ---
 
