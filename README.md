@@ -1,6 +1,6 @@
 # 🎮 TP Jumper
 
-![Game Banner](./Images/TPJumper.gif)
+![Game Banner](TP-Jumper/Images/TPJumper.gif)
 
 ---
 
