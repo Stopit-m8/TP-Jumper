@@ -51,7 +51,7 @@ My Contribution (Stopit-m8):
 
 ### 📁 Game Flow
 
-(insert gambar game flow)
+![Project Diagram](TP-Jumper/Images/GameFlowTPJumper.drawio.svg)
 
 ---
 
