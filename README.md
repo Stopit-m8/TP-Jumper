@@ -57,6 +57,4 @@ My Contribution (Stopit-m8):
 
 ## 🔗 Links
 
-- [🎮 Play / Download](YOUR_LINK)
-- [🎥 Gameplay Video](YOUR_LINK)
-- [📁 Repository](YOUR_LINK)
+- [🎮 Play / Download](https://stopitm8.itch.io/tp-jumper)
