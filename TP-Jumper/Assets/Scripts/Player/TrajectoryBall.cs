@@ -7,6 +7,7 @@ public class TrajectoryBall : MonoBehaviour
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private PoolingTeleboll poolingTeleboll;
     [SerializeField] private float launchPower;
+    [SerializeField] private float RotationPower;
     [SerializeField] private int lineResolution;
     public bool canShoot;
     private LineRenderer line;
@@ -97,6 +98,7 @@ public class TrajectoryBall : MonoBehaviour
             ball.transform.position = transform.position;
             ball.SetActive(true);
             ball.GetComponent<Rigidbody2D>().linearVelocity = direction * launchPower;
+            ball.GetComponent<Rigidbody2D>().AddTorque(-direction.x * RotationPower, ForceMode2D.Impulse);
         }
         
     }

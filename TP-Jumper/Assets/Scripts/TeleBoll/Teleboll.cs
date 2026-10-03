@@ -21,6 +21,7 @@ public class Teleboll : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<TransformPlayer>();
         Instantiate(trailVFX, transform);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
